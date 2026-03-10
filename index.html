@@ -49,9 +49,26 @@
       z-index: 20;
     }
 
+    .headerTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .titleRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      min-width:0;
+    }
+
     h1{
       font-size:18px;
-      margin:0 0 10px;
+      margin:0;
       display:flex;
       gap:10px;
       align-items:center;
@@ -65,21 +82,98 @@
       background:var(--primary-weak);
       color:var(--primary);
       font-weight:700;
+      line-height:1.35;
     }
 
-    .row{
+    .modeTabs{
       display:flex;
-      gap:10px;
+      gap:8px;
       flex-wrap:wrap;
-      align-items:end;
     }
 
-    label{
-      display:flex;
-      gap:6px;
+    .modeBtn{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:9px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    .modeBtn.active{
+      background: var(--primary);
+      color:#fff;
+      border-color: var(--primary);
+    }
+
+    .headerMid{
+      display:grid;
+      grid-template-columns: 1.35fr 0.9fr 0.9fr 0.8fr auto;
+      gap:10px;
       align-items:center;
+      margin-bottom:12px;
+    }
+
+    .fieldBox{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+    }
+
+    .fieldBox label{
       color:var(--muted);
       font-size:13px;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .fieldBox input{
+      width:100%;
+      min-width:0;
+    }
+
+    .copyBox{
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .headerBottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-top:0;
+      flex-wrap:wrap;
+    }
+
+    .tab{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    .tab[aria-selected="true"]{
+      background: var(--primary-weak);
+      border-color: rgba(37,99,235,.25);
+      color: var(--primary);
+    }
+
+    .actionBtns{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
     }
 
     input[type="text"], input[type="number"], textarea{
@@ -91,9 +185,6 @@
       color:var(--text);
       outline:none;
     }
-
-    input[type="text"]{ width:240px; }
-    input[type="number"]{ width:110px; }
 
     textarea{
       width:100%;
@@ -109,6 +200,7 @@
       border-radius:10px;
       cursor:pointer;
       font-weight:700;
+      white-space:nowrap;
     }
 
     .btn.primary{
@@ -129,62 +221,11 @@
 
     .btn:active{ transform: translateY(1px); }
 
-    .tabs{
-      display:flex;
-      gap:8px;
-      margin-top:12px;
-      flex-wrap:wrap;
-    }
-
-    .tab{
-      border:1px solid var(--line);
-      background:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:800;
-      font-size:13px;
-    }
-
-    .tab[aria-selected="true"]{
-      background: var(--primary-weak);
-      border-color: rgba(37,99,235,.25);
-      color: var(--primary);
-    }
-
-    .modeTabs{
-      display:flex;
-      gap:8px;
-      margin: 6px 0 12px;
-      flex-wrap:wrap;
-    }
-
-    .modeBtn{
-      border:1px solid var(--line);
-      background:#fff;
-      padding:9px 14px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:800;
-      font-size:13px;
-    }
-
-    .modeBtn.active{
-      background: var(--primary);
-      color:#fff;
-      border-color: var(--primary);
-    }
-
     .layout{
       display:grid;
       grid-template-columns: 340px 1fr;
       gap:14px;
       margin-top:14px;
-    }
-
-    @media (max-width: 980px){
-      .layout{ grid-template-columns:1fr; }
-      header{ position: static; }
     }
 
     .panel{
@@ -264,14 +305,6 @@
       padding-right:6px;
     }
 
-    @media (max-width: 980px){
-      .tabPanel{
-        height:auto;
-        min-height:auto;
-        overflow:visible;
-      }
-    }
-
     .contentTop{
       display:flex;
       align-items:center;
@@ -324,10 +357,6 @@
       display:grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap:10px;
-    }
-
-    @media (max-width: 980px){
-      .rowInputs{ grid-template-columns: 1fr 1fr; }
     }
 
     .inField{
@@ -489,6 +518,37 @@
       line-height: 1.5;
     }
 
+    @media (max-width: 980px){
+      .layout{ grid-template-columns:1fr; }
+      header{ position: static; }
+
+      .headerMid{
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .copyBox{
+        grid-column: 1 / -1;
+        justify-content:flex-start;
+      }
+
+      .headerBottom{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .actionBtns{
+        width:100%;
+      }
+
+      .tabPanel{
+        height:auto;
+        min-height:auto;
+        overflow:visible;
+      }
+
+      .rowInputs{ grid-template-columns: 1fr 1fr; }
+    }
+
     @media print{
       .no-print{ display:none !important; }
       body{ background:#fff; }
@@ -511,39 +571,55 @@
 <body>
 <div class="wrap">
   <header class="no-print">
-    <h1>
-      교구 점검표
-      <span class="badge">선택 → 배정 → 총합 → 톡 복사</span>
-    </h1>
+    <div class="headerTop">
+      <div class="titleRow">
+        <h1>교구 점검표</h1>
+        <span class="badge">수업/부스 선택 → 학교 정보 입력 → 프로그램 선택 → 복사 후 공유</span>
+      </div>
 
-    <div class="modeTabs">
-      <button class="modeBtn active" id="modeLesson">수업용</button>
-      <button class="modeBtn" id="modeBooth">부스용</button>
+      <div class="modeTabs">
+        <button class="modeBtn active" id="modeLesson">수업용</button>
+        <button class="modeBtn" id="modeBooth">부스용</button>
+      </div>
     </div>
 
-    <div class="row">
-      <label>학교명
+    <div class="headerMid">
+      <div class="fieldBox">
+        <label for="school">학교명</label>
         <input id="school" type="text" placeholder="예: 대전 탄방중" />
-      </label>
-      <label>차시
-        <input id="session" type="text" placeholder="예: 2차시" />
-      </label>
-      <label>날짜
-        <input id="date" type="text" placeholder="예: 12/22" />
-      </label>
-      <label>인원(전체)
-        <input id="people" type="number" min="0" step="1" placeholder="예: 30" />
-      </label>
+      </div>
 
-      <button class="btn primary" id="btnCopy">톡용 복사</button>
-      <button class="btn" id="btnPrint">출력</button>
-      <button class="btn danger" id="btnReset">초기화</button>
+      <div class="fieldBox">
+        <label for="session">차시</label>
+        <input id="session" type="text" placeholder="예: 2차시" />
+      </div>
+
+      <div class="fieldBox">
+        <label for="date">날짜</label>
+        <input id="date" type="text" placeholder="예: 12/22" />
+      </div>
+
+      <div class="fieldBox">
+        <label for="people">인원(전체)</label>
+        <input id="people" type="number" min="0" step="1" placeholder="예: 30" />
+      </div>
+
+      <div class="copyBox">
+        <button class="btn primary" id="btnCopy">톡용 복사</button>
+      </div>
     </div>
 
-    <div class="tabs" role="tablist" aria-label="탭">
-      <button class="tab" id="tabAssign" aria-selected="true">프로그램 배정</button>
-      <button class="tab" id="tabTotals" aria-selected="false">교구 총합</button>
-      <button class="tab" id="tabPreview" aria-selected="false">문구 미리보기</button>
+    <div class="headerBottom">
+      <div class="tabs" role="tablist" aria-label="탭">
+        <button class="tab" id="tabAssign" aria-selected="true">프로그램 배정</button>
+        <button class="tab" id="tabTotals" aria-selected="false">전자기기 및 추가 항목</button>
+        <button class="tab" id="tabPreview" aria-selected="false">문구 미리보기</button>
+      </div>
+
+      <div class="actionBtns">
+        <button class="btn" id="btnPrint">출력</button>
+        <button class="btn danger" id="btnReset">초기화</button>
+      </div>
     </div>
   </header>
 
@@ -586,7 +662,7 @@
       <div id="panelTotals" class="tabPanel" style="display:none;">
         <div class="contentTop">
           <div>
-            <h2 style="margin:0;">교구 총합</h2>
+            <h2 style="margin:0;">전자기기 및 추가 항목</h2>
             <div class="help" id="modeHelpTotals">노트북/태블릿/스마트폰은 항상 표시됩니다. (여분도 여기서 입력 가능)</div>
           </div>
         </div>
@@ -628,9 +704,6 @@
 <script>
   const STORAGE_KEY = "able_equipment_check_v_mode_split";
 
-  // =========================
-  // 수업용 프로그램
-  // =========================
   const LESSON_PROGRAM_MASTER = [
     { id:"p01", name:"신소재(메타물질)", notes:"신소재 키트(나무판, 풍량 측정기, 칼·가위, 테이프, 글루건, 색종이, 수수깡), 우드락판, 선풍기, 멀티탭, 보조배터리, AAA건전지\n🔎 소모품: 색종이, 수수깡, 글루건심\n📚 교과 연계(화학-신소재): 교과 현수막" },
     { id:"p02", name:"반도체", notes:"반도체 키트(브레드보드 세트, 배터리케이스, 수수케이블 13개), AA건전지, 여분(수수케이블, 배터리케이스, 소자 부품)\n회로 설계: 태블릿\n📚 교과 연계(물리-반도체): 교과 현수막" },
@@ -651,7 +724,7 @@
     { id:"p17", name:"정보보안", notes:"금고, 포스트잇, 전자기기(태블릿·스마트폰)\n⚠️ 확인: ZEP 비밀번호 확인 및 금고 간식 보상 세팅 必" },
     { id:"p18", name:"RSA 암호", notes:"유인물-RSA 암호 제작, 전자기기(태블릿·스마트폰)\n📚 교과 연계(수학-RSA암호): 교과 현수막" },
     { id:"p19", name:"메타버스", notes:"탈출용 머지큐브, 전자기기(태블릿·스마트폰)" },
-    { id:"p20", name:"VR", notes:"카드보드(갈색/파랑), 돌돌이 테이프, 리필용 테이트,\n전자기기(태블릿·스마트폰)\n⚠️ 확인: 카드보드 학급 파악\n📚 교과 연계(수학-VR): 교과 현수막\n🌿 지속가능발전(VR로 그리는 지속가능한 미래도시): 지속가능 현수막" },
+    { id:"p20", name:"VR", notes:"카드보드(갈색/파랑), 돌돌이 테이프, 리필용 테이프,\n전자기기(태블릿·스마트폰)\n⚠️ 확인: 카드보드 학급 파악\n📚 교과 연계(수학-VR): 교과 현수막\n🌿 지속가능발전(VR로 그리는 지속가능한 미래도시): 지속가능 현수막" },
     { id:"p21", name:"AR", notes:"머지큐브, 전자기기(태블릿·스마트폰)" },
     { id:"p22", name:"VR+홀로그램", notes:"카드보드(갈색/파랑), 돌돌이 테이프, 홀로그램\n전자기기(태블릿·스마트폰)" },
     { id:"p23", name:"콘텐츠 기획", notes:"유인물-콘텐츠 기획" },
@@ -682,14 +755,7 @@
     { id:"p48", name:"모빌리티", notes:"노트북, 충전기·마우스, 멀티탭, 라인트레이서 확인필요" },
   ];
 
-  // =========================
-  // 부스용 프로그램
-  // 여기에 나중에 별도 목록 넣으면 됨
-  // =========================
-  const BOOTH_PROGRAM_MASTER = [
-    // 예시
-    // { id:"b01", name:"부스명", notes:"부스용 교구 메모" },
-  ];
+  const BOOTH_PROGRAM_MASTER = [];
 
   const TABLET_PER_PERSON_LESSON = new Set([
     "반도체", "AI 운동·게임", "게임 개발(엔트리)",
@@ -708,7 +774,6 @@
     "스마트 팩토리", "로봇", "자율주행", "VR+홀로그램", "앱 개발"
   ]);
 
-  // 부스용 자동 규칙은 아직 비워둠
   const TABLET_PER_PERSON_BOOTH = new Set([]);
   const LAPTOP_HALF_BOOTH = new Set([]);
   const LAPTOP_PER_PERSON_BOOTH = new Set([]);
@@ -734,9 +799,7 @@
       programData: {},
       totalsOverrides: {},
       extrasDevices: { laptop:0, tablet:0, smartphone:0 },
-      extras: [
-        // 부스용 기본 추가항목은 나중에 수정
-      ]
+      extras: []
     }
   };
 
@@ -832,7 +895,6 @@
 
       const parsed = JSON.parse(raw);
 
-      // 새 구조
       if(parsed && parsed.mode && parsed.lesson && parsed.booth){
         const base = initState();
         base.mode = parsed.mode === "booth" ? "booth" : "lesson";
@@ -861,7 +923,6 @@
         return base;
       }
 
-      // 구버전 마이그레이션: 기존 데이터는 수업용으로 옮김
       if(parsed && parsed.meta && parsed.programData){
         const migrated = initState();
         migrated.mode = "lesson";
@@ -1412,7 +1473,7 @@
     if(Number(totals["태블릿"]||0) > 0) totalParts.push(`태블릿 ${Number(totals["태블릿"])}`);
 
     if(totalParts.length){
-      blocks.push(`💻 총합 기기\n${totalParts.join(" / ")}`);
+      blocks.push(`💻 전자기기 총합\n${totalParts.join(" / ")}`);
     }
 
     const extras = current.extras
